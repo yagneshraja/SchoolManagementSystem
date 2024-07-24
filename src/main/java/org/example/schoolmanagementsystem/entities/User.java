@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.schoolmanagementsystem.enums.UserType;
 
 import java.util.Set;
 
@@ -16,6 +17,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
+//@MappedSuperclass
 public class User {
 
     @Id
@@ -35,6 +38,8 @@ public class User {
     private String password;
 
 
+    @Column(nullable = true)
+    private UserType userType;
 
 
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)

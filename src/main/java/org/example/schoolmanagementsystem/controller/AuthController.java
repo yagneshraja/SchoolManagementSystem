@@ -3,6 +3,8 @@ package org.example.schoolmanagementsystem.controller;
 import lombok.AllArgsConstructor;
 import org.example.schoolmanagementsystem.dto.JwtAuthResponse;
 import org.example.schoolmanagementsystem.dto.LoginDto;
+import org.example.schoolmanagementsystem.dto.UserDto;
+import org.example.schoolmanagementsystem.entities.User;
 import org.example.schoolmanagementsystem.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,11 @@ public class AuthController {
     private AuthService authService;
 
 
+    @PostMapping("/createUser")
+    public User createUser(@RequestBody UserDto userDto){
+        return authService.createUser(userDto);
+    }
+
     @PostMapping("/login")
     public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto) {
         String token = authService.login(loginDto);
@@ -26,6 +33,6 @@ public class AuthController {
 
     @GetMapping("/hello")
     public String hello(){
-        return "Hello";
+        return "Hello" + " Yagnesh";
     }
 }
